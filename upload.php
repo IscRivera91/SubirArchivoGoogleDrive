@@ -7,11 +7,14 @@
  */
 include __DIR__ . '/vendor/autoload.php';
 
-$client = new Google_Client();
+
+$file_path = 'prueba.docx';
+$file_name = 'documento';
+$carpeta_id = '1v3Sn0dBdrMyFIV6RyqSo4jW0rlrPhs7I';
 
 putenv('GOOGLE_APPLICATION_CREDENTIALS='.__DIR__.'/acceso.json');
 
-
+$client = new Google_Client();
 $client->useApplicationDefaultCredentials();
 $client->setScopes(['https://www.googleapis.com/auth/drive.file']);
 
@@ -20,18 +23,18 @@ try {
 
     $file = new Google_Service_Drive_DriveFile();
 
-    $file_path = 'img.png';
+    $fileMimeType = mime_content_type($file_path); 
 
-    $file->setName('otro_nombre.png');
-    $file->setParents(['1v3Sn0dBdrMyFIV6RyqSo4jW0rlrPhs7I']); // id de la carpeta en google drive
+    $file->setName($file_name);
+    $file->setParents([$carpeta_id]); // id de la carpeta en google drive
     $file->setDescription('Archivo subido desde php');
-    $file->setMimeType('image/png');
+    $file->setMimeType($fileMimeType);
 
     $result = $service->files->create(
         $file,
         [
             'data' => file_get_contents($file_path),
-            'mimeType' => 'image/png',
+            'mimeType' => $fileMimeType,
             'uploadType' => 'media',
         ]
     );
