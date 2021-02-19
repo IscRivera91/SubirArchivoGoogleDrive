@@ -63,6 +63,14 @@ function getClient()
 // Get the API client and construct the service object.
 $client = getClient();
 
+require_once('gdrive_upload.php');
+
+$fullPath =  __DIR__.'/img.png';  // path to file you want to upload 
+$gdrive = new gdrive($client);
+
+$gdrive->fileRequest = $fullPath;
+
+$gdrive->processFile();
 
 
 

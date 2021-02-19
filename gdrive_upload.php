@@ -1,5 +1,8 @@
 <?php
 
+require __DIR__ . '/vendor/autoload.php';
+
+
 /**
  * Archivo tomado de https://github.com/yannisg/Google-Drive-Uploader-PHP/blob/master/gdrive_upload.php
  * Author: Yannis Giovanos - https://github.com/yannisg
@@ -7,41 +10,17 @@
 
 class gdrive{
 	
-	//credentials (get those from google developer console https://console.developers.google.com/)
-	var $clientId = '...';
-	var $clientSecret = '...';
-	var $redirectUri = '...';
-	
 	//variables
-	var $fileRequest;
-	var $mimeType;
-	var $filename;
-	var $path;
-	var $client;
+	public $fileRequest;
+	public $mimeType;
+	public $filename;
+	public $path;
+	public $client;
 	
 	
-	function __construct(){
-		require_once 'src/Google/autoload.php'; // get from here https://github.com/google/google-api-php-client.git 
-		$this->client = new Google_Client();
-	}
-	
-	
-	function initialize(){
-		echo "initializing class\n";
-		$client = $this->client;
-		
-		$client->setClientId($this->clientId);
-		$client->setClientSecret($this->clientSecret);
-		$client->setRedirectUri($this->redirectUri);
-				
-		$refreshToken = file_get_contents(__DIR__ . "/token.txt"); 
-		$client->refreshToken($refreshToken);
-		$tokens = $client->getAccessToken();
-		$client->setAccessToken($tokens);
-		
-		$client->setDefer(true);
-		$this->processFile();
-		
+	function __construct($client){
+		require __DIR__ . '/vendor/autoload.php';
+		$this->client = $client;
 	}
 	
 	function processFile(){
