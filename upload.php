@@ -9,7 +9,8 @@ include __DIR__ . '/vendor/autoload.php';
 
 $client = new Google_Client();
 
-putenv('GOOGLE_APPLICATION_CREDENTIALS=acceso.json');
+putenv('GOOGLE_APPLICATION_CREDENTIALS='.__DIR__.'/acceso.json');
+
 
 $client->useApplicationDefaultCredentials();
 $client->setScopes(['https://www.googleapis.com/auth/drive.file']);
