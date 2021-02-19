@@ -38,6 +38,9 @@ try {
 
     print_r($result->id);exit;
 
+} catch (Google_Service_Exception $gs) {
+    $message = json_decode($gs->getMessage());
+    print_r($message); exit;
 } catch (Exception $e) {
-    print_r($e);
+    print_r($e->getMessage());
 }
