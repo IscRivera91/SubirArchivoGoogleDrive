@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * Este codigo esta basado en  video https://www.youtube.com/watch?v=zI0obqa8r80&ab_channel=FreddySarango
+ * siguiendo las instrucciones al pie de la letra del video esta funciona 
+ * en google developt cambia un poco la forma de crear la credencial pero en teoria es lo mismo
+ */
 include __DIR__ . '/vendor/autoload.php';
 
 $client = new Google_Client();
@@ -29,7 +35,7 @@ try {
         ]
     );
 
-    print_r($result);exit;
+    print_r($result->id);exit;
 
 } catch (Exception $e) {
     print_r($e);
