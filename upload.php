@@ -21,7 +21,7 @@ try {
 
     $file_path = 'img.png';
 
-    $file->setName('img.png');
+    $file->setName('otro_nombre.png');
     $file->setParents(['1v3Sn0dBdrMyFIV6RyqSo4jW0rlrPhs7I']); // id de la carpeta en google drive
     $file->setDescription('Archivo subido desde php');
     $file->setMimeType('image/png');
